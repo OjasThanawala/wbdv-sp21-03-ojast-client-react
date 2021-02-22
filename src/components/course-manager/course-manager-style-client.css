@@ -1,0 +1,16 @@
+.wbdv-sticky-top-dash {
+    position: center;
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+}
+
+.wbdv-padding-50px {
+    padding: 10px;
+}
+
+.wbdv-add-bottom{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+}
