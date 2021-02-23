@@ -3,14 +3,6 @@ import "./course-editor-style-client.css"
 import {Link} from "react-router-dom";
 
 const CourseEditor = ({history}) => {
-    // <h1>
-    //     <Link to="/courses/table">
-    //         <i className="fas fa-arrow-left"></i>
-    //     </Link>
-    //     Course Editor
-    //     <i className="fas fa-times float-right"
-    //        onClick={() => history.goBack()}></i>
-    // </h1>
 
     return (
         <div className="wbdv-sticky-top-dash wbdv-padding-50px">

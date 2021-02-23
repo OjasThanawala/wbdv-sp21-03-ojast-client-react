@@ -29,20 +29,12 @@ const CourseCard = (
             <div className="card" style={{width: "18rem", margin: "15px"}}>
                 <img src="https://www.valuecoders.com/blog/wp-content/uploads/2016/08/react.png" className="card-img-top" alt="..."/>
                 <div className="card-body">
-                    <h5 className="card-title">{course.title}</h5>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
-                    <Link to="/editor" className="btn btn-primary">
-                        Go somewhere
-                    </Link>
-                </div>
-            </div>
-            <tr>
-                <h5 className="card-title">
                     {
                         !editing &&
-                        <Link to="/courses/editor">
+                        <Link to="/editor">
+                            <h5 className="card-title">
                                 {course.title}
+                            </h5>
                         </Link>
                     }
                     {
@@ -52,46 +44,42 @@ const CourseCard = (
                             onChange={(e) => setTitle(e.target.value)}
                             value={title}/>
                     }
-                </h5>
-                {/*<td className ="d-none d-md-table-cell">*/}
-                <p className="card-text"> Some description </p>
+
+                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
                     {
-                        !editing && course.owner
+                        !editing &&
+                        <Link to="/editor">
+                            <a className="btn btn-primary">
+                                {course.title}
+                            </a>
+                        </Link>
+                    }
+
+
+                    {
+                        editing &&
+                        <i onClick={() => deleteCourse(course)}
+                           className="fas fa-trash float-right"
+                           style={{
+                               color: 'red'}}></i>
                     }
                     {
                         editing &&
-                        <input
-                            className="form-control"
-                            onChange={(event) => setOwner(event.target.value)}
-                            value={owner}/>
-                    }
-                <td className ="d-none d-lg-table-cell">
-                    {
-                        !editing && course.lastModified
-                    }
-                    {
-                        editing &&
-                        <input
-                            onChange={(event) => setLastModified(event.target.value)}
-                            value={lastModified}
-                            className="form-control"/>
-                    }
-                </td>
-                <td>
-                    <i onClick={() => deleteCourse(course)} className="fas fa-trash float-right"></i>
-                    {
-                        editing &&
-                        <i onClick={() => saveCourse()} className="fas fa-check float-right"></i>
+                        <i onClick={() => saveCourse()}
+                           className="fas fa-check float-right"
+                           style={{
+                               color: 'green'}}></i>
                     }
 
                     {
                         !editing &&
-                        <i onClick={() => setEditing(true)} className="fas fa-edit float-right"></i>
+                        <i onClick={() => setEditing(true)}
+                           className="fas fa-edit float-right"></i>
                     }
 
-
-                </td>
-            </tr>
+                </div>
+            </div>
         </div>
     )
 }

@@ -8,14 +8,20 @@ import courseService, {findAllCourses, deleteCourse} from "../../services/course
 export default class CourseManager
     extends React.Component {
     state = {
-        courses: []
+        courses: [],
+        courseTitle: 'New Course'
+    }
+
+    fetchNewCourseTitle(course) {
+        this.setState({courseTitle: course})
     }
 
     componentDidMount() {
         courseService.findAllCourses()
             .then(courses => this.setState({courses}))
-        // .then(courses => this.setState({courses: courses}))
     }
+
+    findCourseById = () => courseService.findCourseById().then(course => course)
 
     updateCourse = (course) => {
         courseService.updateCourse(course._id, course)
@@ -35,7 +41,6 @@ export default class CourseManager
     }
 
     deleteCourse = (course) => {
-        // alert("delete course " + course._id)
         courseService.deleteCourse(course._id)
             .then(status => {
                 // this.setState({
@@ -48,17 +53,22 @@ export default class CourseManager
     }
 
     addCourse = () => {
-        // alert('add course')
         const newCourse = {
-            title: "New Course",
+            title: this.state.courseTitle,
             owner: "me",
             lastModified: "2/10/2021"
         }
+        this.fetchNewCourseTitle('');
         courseService.createCourse(newCourse)
             .then(actualCourse => {
-                this.state.courses.push(actualCourse)
-                this.setState(this.state)
+                this.setState((prevState) => (
+                    {...prevState,
+                        courses:
+                            [...prevState.courses,
+                                actualCourse]
+                    }))
             })
+        this.setState({courseTitle: "New Course"})
     }
 
     render() {
@@ -78,11 +88,13 @@ export default class CourseManager
                             <h4>Course Manager</h4>
                         </div>
                         <div className="col-4">
-                            <input className="form-control"/>
+                            <input className="form-control"
+                            onChange={(event) => this.fetchNewCourseTitle(event.target.value)}
+                            value={this.state.courseTitle}
+                            placeholder="New Course"/>
                         </div>
                         <button className="btn btn-lg btn-danger mx-5 rounded-circle" type="button"
-                                onClick={this.addCourse}
-                        >
+                                onClick={this.addCourse}>
                             <i className="fa fa-plus"></i>
                         </button>
 
@@ -90,19 +102,18 @@ export default class CourseManager
                 </div>
                 <br/>
 
-                {/*<Route path="/courses/table" component={CourseTable}/>*/}
                 <Route path="/courses/table" exact={true} >
                     <CourseTable
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
-                {/*<Route path="/courses/grid" component={CourseGrid}/>*/}
                 <Route path="/courses/grid" exact={true} >
-                    <CourseGrid courses={this.state.courses}/>
+                    <CourseGrid
+                        updateCourse={this.updateCourse}
+                        deleteCourse={this.deleteCourse}
+                        courses={this.state.courses}/>
                 </Route>
-                {/*<CourseTable courses={this.state.courses}/>*/}
-                {/*<CourseGrid courses={this.state.courses}/>*/}
 
                 <button className="wbdv-add-bottom btn btn-lg btn-danger mx-3 rounded-circle" type="button"
                         onClick={this.addCourse}>

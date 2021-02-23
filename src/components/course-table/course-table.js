@@ -46,11 +46,11 @@ export default class CourseTable
 
                         <tbody>
                         {
-                            this.props.courses.map((course, ndx) =>
+                            this.props.courses.map((course) =>
                                 <CourseRow
                                     updateCourse={this.props.updateCourse}
                                     deleteCourse={this.props.deleteCourse}
-                                    key={ndx}
+                                    key={course._id}
                                     course={course}
                                     title={course.title}
                                     owner={course.owner}

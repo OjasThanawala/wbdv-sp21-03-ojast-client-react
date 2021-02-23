@@ -5,23 +5,21 @@ import {Link} from "react-router-dom";
 const CourseRow = (
     {
         course,
-        // lastModified,
-        // owner,
+        lastModified,
+        owner,
         deleteCourse,
         updateCourse
     }) => {
     const [editing, setEditing] = useState(false)
     const [title, setTitle] = useState(course.title)
-    const [owner, setOwner] = useState(course.owner)
-    const [lastModified, setLastModified] = useState(course.lastModified)
+    // const [owner, setOwner] = useState(course.owner)
+    // const [lastModified, setLastModified] = useState(course.lastModified)
 
     const saveCourse = () => {
         setEditing(false)
         const newCourse = {
             ...course,
-            title: title,
-            owner: owner,
-            lastModified: lastModified
+            title: title
         }
         updateCourse(newCourse)
     }
@@ -48,24 +46,11 @@ const CourseRow = (
                 {
                     !editing && course.owner
                 }
-                {
-                    editing &&
-                    <input
-                        className="form-control"
-                        onChange={(event) => setOwner(event.target.value)}
-                        value={owner}/>
-                }
+
             </td>
             <td className ="d-none d-lg-table-cell">
                 {
                     !editing && course.lastModified
-                }
-                {
-                    editing &&
-                    <input
-                        onChange={(event) => setLastModified(event.target.value)}
-                        value={lastModified}
-                        className="form-control"/>
                 }
             </td>
             <td>
