@@ -3,7 +3,7 @@ import CourseTable from "../course-table/course-table";
 import CourseGrid from "../course-grid/course-grid";
 import "./course-manager-style-client.css"
 import {Link, Route} from "react-router-dom";
-import courseService, {findAllCourses, deleteCourse} from "../../services/course-service";
+import courseService, {updateCourse, deleteCourse} from "../../services/course-service";
 
 export default class CourseManager
     extends React.Component {
@@ -43,9 +43,6 @@ export default class CourseManager
     deleteCourse = (course) => {
         courseService.deleteCourse(course._id)
             .then(status => {
-                // this.setState({
-                //   courses: this.state.courses.filter(c => c._id !== course._id)
-                // })
                 this.setState((prevState) => ({
                     courses: prevState.courses.filter(c => c._id !== course._id)
                 }))

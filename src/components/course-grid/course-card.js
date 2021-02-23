@@ -5,13 +5,15 @@ import {Link} from "react-router-dom";
 const CourseCard = (
     {
         course,
+        owner,
+        lastModified,
         deleteCourse,
         updateCourse
     }) => {
     const [editing, setEditing] = useState(false)
     const [title, setTitle] = useState(course.title)
-    const [owner, setOwner] = useState(course.owner)
-    const [lastModified, setLastModified] = useState(course.lastModified)
+    // const [owner, setOwner] = useState(course.owner)
+    // const [lastModified, setLastModified] = useState(course.lastModified)
 
     const saveCourse = () => {
         setEditing(false)
@@ -45,14 +47,13 @@ const CourseCard = (
                             value={title}/>
                     }
 
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of
-                        the card's content.</p>
+                    <p className="card-text">Some Description.</p>
                     {
                         !editing &&
                         <Link to="/editor">
-                            <a className="btn btn-primary">
+                            <i className="btn btn-primary">
                                 {course.title}
-                            </a>
+                            </i>
                         </Link>
                     }
 
@@ -60,14 +61,14 @@ const CourseCard = (
                     {
                         editing &&
                         <i onClick={() => deleteCourse(course)}
-                           className="fas fa-trash float-right"
+                           className="fa fa-trash float-right"
                            style={{
                                color: 'red'}}></i>
                     }
                     {
                         editing &&
                         <i onClick={() => saveCourse()}
-                           className="fas fa-check float-right"
+                           className="fa fa-check float-right"
                            style={{
                                color: 'green'}}></i>
                     }
@@ -75,7 +76,7 @@ const CourseCard = (
                     {
                         !editing &&
                         <i onClick={() => setEditing(true)}
-                           className="fas fa-edit float-right"></i>
+                           className="fa fa-edit float-right"></i>
                     }
 
                 </div>

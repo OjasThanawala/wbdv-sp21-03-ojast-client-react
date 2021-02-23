@@ -65,7 +65,6 @@ const CourseRow = (
                     <i onClick={() => setEditing(true)} className="fas fa-edit float-right"></i>
                 }
 
-
             </td>
         </tr>)
 }
