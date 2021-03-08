@@ -1,6 +1,7 @@
 import React from 'react'
 import CourseTable from "../course-table/course-table";
 import CourseGrid from "../course-grid/course-grid";
+import CourseEditor from "../course-editor/course-editor";
 import "./course-manager-style-client.css"
 import {Link, Route} from "react-router-dom";
 import courseService, {updateCourse, deleteCourse} from "../../services/course-service";
@@ -110,6 +111,15 @@ export default class CourseManager
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
+                </Route>
+
+                <Route path={[
+                    "/courses/:layoutId/editor/:courseId",
+                    "/courses/:layoutId/editor/:courseId/modules/:moduleId",
+                    "/courses/:layoutId/editor/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layoutId/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
+                       exact={true}
+                       render={(props) => <CourseEditor {...props}/>}>
                 </Route>
 
                 <button className="wbdv-add-bottom btn btn-lg btn-danger mx-3 rounded-circle" type="button"
