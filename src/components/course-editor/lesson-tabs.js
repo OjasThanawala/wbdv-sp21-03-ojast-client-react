@@ -33,11 +33,11 @@ const LessonTabs = (
                         <li className={`nav-item ${lesson._id === lessonId ? 'active' : ''}`} key={lesson._id}>
 
                             <EditableItem
-                                active={true}
                                 // to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
                                 to={`/courses/${layoutId}/editor/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                 deleteItem={deleteLesson}
                                 updateItem={updateLesson}
+                                active={lesson._id === lessonId}
                                 item={lesson}/>
                         </li>
                     )
@@ -54,8 +54,6 @@ const stpm = (state) => ({
 })
 const dtpm = (dispatch) => ({
     findLessonsForModule: (moduleId) => {
-        console.log("LOAD LESSONS FOR MODULE:")
-        console.log(moduleId)
         lessonService.findLessonsForModule(moduleId)
             .then(lessons => dispatch({
                 type: "FIND_LESSONS",
@@ -63,21 +61,30 @@ const dtpm = (dispatch) => ({
             }))
     },
     createLessonForModule: (moduleId) => {
-        console.log("CREATE LESSON FOR MODULE: " + moduleId)
-        lessonService
-            .createLessonForModule(moduleId, {title: "New Lesson"})
-            .then(lesson => dispatch({
-                type: "CREATE_LESSON",
-                lesson
-            }))
+        if(moduleId !== "undefined" && typeof moduleId !== "undefined") {
+            lessonService
+                .createLessonForModule(moduleId, {title: "New Lesson"})
+                .then(lesson => dispatch({
+                    type: "CREATE_LESSON",
+                    lesson
+                }))
+        }
+        else
+            console.log("Select a Module before creating a course")
     },
 
     deleteLesson: (item) =>
         lessonService.deleteLesson(item._id)
-            .then(status => dispatch({
-                type: "DELETE_LESSON",
-                lessonToDelete: item
-            })),
+            .then(status => {
+                dispatch({
+                    type: "DELETE_LESSON",
+                    lessonToDelete: item
+                })
+                dispatch({
+                    type: "FIND_TOPICS",
+                    topics: []
+                })
+            }),
     updateLesson: (lesson) =>
         lessonService.updateLesson(lesson._id, lesson)
             .then(status => dispatch({
