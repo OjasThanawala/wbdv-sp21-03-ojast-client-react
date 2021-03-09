@@ -33,8 +33,8 @@ const LessonTabs = (
                         <li className={`nav-item ${lesson._id === lessonId ? 'active' : ''}`} key={lesson._id}>
 
                             <EditableItem
-                                // to={`/courses/editor/${courseId}/${moduleId}/${lesson._id}`}
-                                to={`/courses/${layoutId}/editor/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+                                // to={`/courses/edit/${courseId}/${moduleId}/${lesson._id}`}
+                                to={`/courses/${layoutId}/edit/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
                                 deleteItem={deleteLesson}
                                 updateItem={updateLesson}
                                 active={lesson._id === lessonId}

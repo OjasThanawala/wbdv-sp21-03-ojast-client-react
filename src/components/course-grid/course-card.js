@@ -33,7 +33,7 @@ const CourseCard = (
                 <div className="card-body">
                     {
                         !editing &&
-                        <Link to={`/courses/grid/editor/${course._id}`}>
+                        <Link to={`/courses/grid/edit/${course._id}`}>
                             <h5 className="card-title">
                                 {course.title}
                             </h5>
@@ -50,7 +50,7 @@ const CourseCard = (
                     <p className="card-text">Some Description.</p>
                     {
                         !editing &&
-                        <Link to={`/courses/grid/editor/${course._id}`}>
+                        <Link to={`/courses/grid/edit/${course._id}`}>
                             <i className="btn btn-primary">
                                 {course.title}
                             </i>

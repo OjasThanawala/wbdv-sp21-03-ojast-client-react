@@ -114,10 +114,10 @@ export default class CourseManager
                 </Route>
 
                 <Route path={[
-                    "/courses/:layoutId/editor/:courseId",
-                    "/courses/:layoutId/editor/:courseId/modules/:moduleId",
-                    "/courses/:layoutId/editor/:courseId/modules/:moduleId/lessons/:lessonId",
-                    "/courses/:layoutId/editor/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
+                    "/courses/:layoutId/edit/:courseId",
+                    "/courses/:layoutId/edit/:courseId/modules/:moduleId",
+                    "/courses/:layoutId/edit/:courseId/modules/:moduleId/lessons/:lessonId",
+                    "/courses/:layoutId/edit/:courseId/modules/:moduleId/lessons/:lessonId/topics/:topicId"]}
                        exact={true}
                        render={(props) => <CourseEditor {...props}/>}>
                 </Route>
