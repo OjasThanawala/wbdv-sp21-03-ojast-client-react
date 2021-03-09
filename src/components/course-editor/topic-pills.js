@@ -15,7 +15,7 @@ const TopicPills = (
     }) => {
     const {layoutId, courseId, moduleId, lessonId, topicId} = useParams();
     useEffect(() => {
-        console.log("LOAD TOPICS FOR LESSON: " + lessonId)
+        // console.log("LOAD TOPICS FOR LESSON: " + lessonId)
         if(moduleId !== "undefined" && typeof moduleId !== "undefined" &&
             lessonId !== "undefined" && typeof lessonId !== "undefined") {
             findTopicsForLessons(lessonId)
@@ -49,8 +49,8 @@ const stpm = (state) => ({
 })
 const dtpm = (dispatch) => ({
     findTopicsForLessons: (lessonId) => {
-        console.log("LOAD TOPICS FOR LESSONS:")
-        console.log(lessonId)
+        // console.log("LOAD TOPICS FOR LESSONS:")
+        // console.log(lessonId)
         topicService.findTopicsForLessons(lessonId)
             .then(topics => dispatch({
                 type: "FIND_TOPICS",
