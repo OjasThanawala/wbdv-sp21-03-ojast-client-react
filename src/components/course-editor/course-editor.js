@@ -36,6 +36,7 @@ const CourseEditor = ({history}) => {
                     <Link to={`/courses/${layoutId}`}>
                         <i className="fas fa-times"></i>
                     </Link>
+                    {" "}
                     Course Editor - {course.title}
                 </h2>
                 <div className="row container-fluid">

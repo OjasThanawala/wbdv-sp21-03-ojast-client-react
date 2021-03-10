@@ -2,6 +2,7 @@ import React from 'react'
 import CourseTable from "../course-table/course-table";
 import CourseGrid from "../course-grid/course-grid";
 import CourseEditor from "../course-editor/course-editor";
+import CourseManagerHeader from "./course-manager-header";
 import "./course-manager-style-client.css"
 import {Link, Route} from "react-router-dom";
 import courseService, {updateCourse, deleteCourse} from "../../services/course-service";
@@ -77,36 +78,44 @@ export default class CourseManager
                     <i className="fas fa-2x fa-home float-right"></i>
                 </Link>
 
-                <div className="wbdv-sticky-top-dash wbdv-padding-50px">
-                    <div className="row p-3 mb-2 bg-info text-white">
-                        <div className="col-1">
-                            <i className="fa fa-bars fa-2x"></i>
-                        </div>
-                        <div className="col-2 d-none d-lg-block">
-                            <h4>Course Manager</h4>
-                        </div>
-                        <div className="col-4">
-                            <input className="form-control"
-                            onChange={(event) => this.fetchNewCourseTitle(event.target.value)}
-                            value={this.state.courseTitle}
-                            placeholder="New Course"/>
-                        </div>
-                        <button className="btn btn-lg btn-danger mx-5 rounded-circle" type="button"
-                                onClick={this.addCourse}>
-                            <i className="fa fa-plus"></i>
-                        </button>
+                {/*<div className="wbdv-sticky-top-dash wbdv-padding-50px">*/}
+                {/*    <div className="row p-3 mb-2 bg-info text-white">*/}
+                {/*        <div className="col-1">*/}
+                {/*            <i className="fa fa-bars fa-2x"></i>*/}
+                {/*        </div>*/}
+                {/*        <div className="col-2 d-none d-lg-block">*/}
+                {/*            <h4>Course Manager</h4>*/}
+                {/*        </div>*/}
+                {/*        <div className="col-4">*/}
+                {/*            <input className="form-control"*/}
+                {/*            onChange={(event) => this.fetchNewCourseTitle(event.target.value)}*/}
+                {/*            value={this.state.courseTitle}*/}
+                {/*            placeholder="New Course"/>*/}
+                {/*        </div>*/}
+                {/*        <button className="btn btn-lg btn-danger mx-5 rounded-circle" type="button"*/}
+                {/*                onClick={this.addCourse}>*/}
+                {/*            <i className="fa fa-plus"></i>*/}
+                {/*        </button>*/}
 
-                    </div>
-                </div>
+                {/*    </div>*/}
+                {/*</div>*/}
                 <br/>
 
                 <Route path="/courses/table" exact={true} >
+                    <CourseManagerHeader
+                        addCourse={this.addCourse}
+                        fetchNewCourseTitle={(event) => this.fetchNewCourseTitle(event.target.value)}
+                        courseTitle={this.state.courseTitle}/>
                     <CourseTable
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
                         courses={this.state.courses}/>
                 </Route>
                 <Route path="/courses/grid" exact={true} >
+                    <CourseManagerHeader
+                        addCourse={this.addCourse}
+                        fetchNewCourseTitle={(event) => this.fetchNewCourseTitle(event.target.value)}
+                        courseTitle={this.state.courseTitle}/>
                     <CourseGrid
                         updateCourse={this.updateCourse}
                         deleteCourse={this.deleteCourse}
