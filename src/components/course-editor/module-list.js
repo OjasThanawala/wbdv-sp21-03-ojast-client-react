@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import moduleService from "../../services/module-service"
 import lessonService from "../../services/lesson-service"
 import topicService from "../../services/topic-service"
+import widgetService from "../../services/widget-service"
 
 const ModuleList = (
     {
@@ -71,6 +72,10 @@ const dtpm = (dispatch) => {
                             type: "FIND_TOPICS",
                             topics: []
                         })
+                        dispatch({
+                            type: "FIND_WIDGETS",
+                            widgets: []
+                        })
                     }),
         updateModule: (module) =>
             moduleService.updateModule(module._id, module)
@@ -94,6 +99,11 @@ const dtpm = (dispatch) => {
                     .then(theTopics => dispatch({
                         type: "FIND_TOPICS_FOR_LESSONS",
                         theTopics: undefined
+                    })),
+                widgetService.findWidgetsForTopic(undefined)
+                    .then(theTopics => dispatch({
+                        type: "FIND_WIDGETS_FOR_TOPICS",
+                        theWidgets: undefined
                     }))
             )
         }
