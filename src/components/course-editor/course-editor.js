@@ -60,7 +60,7 @@ const CourseEditor = ({history}) => {
                         <br>
                         </br>
                         <div className="container-fluid">
-                            {topicId && <WidgetList moduleid={moduleId} lessonid={lessonId} topicid = {topicId}/>}>
+                            {topicId && <WidgetList moduleid={moduleId} lessonid={lessonId} topicid = {topicId}/>}
 
                         </div>
                     </div>

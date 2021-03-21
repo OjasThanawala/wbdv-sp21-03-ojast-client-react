@@ -14,36 +14,41 @@ const ParagraphWidget = (
             {
                 editing &&
                 <>
-                    <i onClick={() => deleteWidget(widget)} className="fas fa-trash float-right"></i>
+                    <i onClick={() => {
+                        setEditing(false);
+                        deleteWidget(widget)}
+                    }
+                       className="fas fa-trash float-right">
+                    </i>
 
                     <i onClick={() => {
-                        updateWidget({newItem});
-                        {setEditing(false);}
-                    }} className="fas fa-2x fa-check float-right"></i>
+                        updateWidget(newItem);
+                        setEditing(false);
+                    }} className="fas fa-check float-right"></i>
 
                     <textarea
-                        onChange={(event) => setNewItem(newItem =>
-                        ({...newItem, title: event.target.value})
-                    )}
-                        value={widget.text} className="form-control">
-
+                        onChange={(event) =>
+                            setNewItem(newItem => ({...newItem, text: event.target.value}))
+                    } value={newItem.text} className="form-control">
                     </textarea>
 
-                    <select onChange={(event) => setNewItem(widget =>
-                        ({...widget, size: parseInt(event.target.value)})
-                    )} value={widget.type}
-                        className="form-control">
+                    <select
+                        onChange={(event) =>
+                            setNewItem({...newItem, type: event.target.value})
+                        } value={newItem.type} className="form-control">
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
-
                     </select>
                 </>
             }
             {
                 !editing &&
-                <p>
-                    {widget.text}
-                </p>
+                <>
+                    <p>
+                        {newItem.text}
+                    </p>
+                    <i onClick={() => setEditing(true)} className="fas fa-cog float-right"></i>
+                </>
             }
         </div>
     )

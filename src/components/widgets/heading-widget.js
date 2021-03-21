@@ -7,37 +7,46 @@ const HeadingWidget = (
         deleteWidget
     }) => {
 
-    const [editing, setEditing] = useState(false)
-    const [newItem, setNewItem] = useState(widget)
+    const [editing, setEditing] = useState(false);
+    const [newItem, setNewItem] = useState(widget);
+
     return(
         <div>
-            <h4>Heading Widget</h4>
+            {/*<h4>Heading Widget</h4>*/}
             {
                 editing &&
-                <>
-                    <i onClick={() => deleteWidget(widget)} className="fas fa-trash float-right"></i>
+                <div>
+                    <i onClick={() => {
+                        updateWidget(newItem);
+                        setEditing(false);
+                    }} className="fas fa-check float-right"></i>
 
                     <i onClick={() => {
-                        updateWidget({newItem});
-                        {setEditing(false);}
-                    }} className="fas fa-2x fa-check float-right"></i>
+                        deleteWidget(widget);
+                        setEditing(false);
+                    }}
+                       className="fas fa-trash float-right">
+                    </i>
 
                     <input
-                        onChange={(event) => setNewItem(newItem =>
-                            ({...newItem, title: event.target.value})
-                        )}
-                        value={widget.text} className="form-control"/>
+                        onChange={(event) =>
+                            setNewItem({...newItem, text: event.target.value})
+                        }
+                        value={newItem.text} className="form-control"/>
 
-                    <select onChange={(event) => setNewItem(widget =>
-                        ({...widget, size: parseInt(event.target.value)})
-                    )} value={widget.type}
-                            className="form-control">
+                    <select
+                        onChange={(event) =>
+                            setNewItem(newItem =>
+                        ({...newItem, type: event.target.value}))
+                        } value={newItem.type} className="form-control">
                         <option value={"HEADING"}>Heading</option>
                         <option value={"PARAGRAPH"}>Paragraph</option>
-
                     </select>
-                    <input value={widget.text} className="form-control"/>
-                    <select value={widget.size} className="form-control">
+
+                    <select
+                        onChange={(e) =>
+                            setNewItem({...newItem, size: parseInt(e.target.value)})
+                        } value={newItem.size} className="form-control">
                         <option value={1}>Heading 1</option>
                         <option value={2}>Heading 2</option>
                         <option value={3}>Heading 3</option>
@@ -45,7 +54,7 @@ const HeadingWidget = (
                         <option value={5}>Heading 5</option>
                         <option value={6}>Heading 6</option>
                     </select>
-                </>
+                </div>
             }
             {
                 !editing &&
@@ -56,6 +65,7 @@ const HeadingWidget = (
                     {widget.size === 4 && <h4>{widget.text}</h4>}
                     {widget.size === 5 && <h5>{widget.text}</h5>}
                     {widget.size === 6 && <h6>{widget.text}</h6>}
+                    <i onClick={() => setEditing(true)} className="fas fa-cog float-right"/>
                 </>
             }
         </div>

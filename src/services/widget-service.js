@@ -1,10 +1,10 @@
-const WIDGETS_URL = "http://localhost:8080/api/widgets";
-const TOPICS_URL = "http://localhost:8080/api/topics";
+const WIDGETS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/widgets";
+const TOPICS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/topics";
 
-export const createWidget = (topicId) =>
+export const createWidget = (topicId, widget) =>
     fetch(`${TOPICS_URL}/${topicId}/widgets`, {
         method: "POST",
-        body: JSON.stringify({type: "HEADING", size: 2, text: "New Widget"}),
+        body: JSON.stringify({type: "HEADING", size: 1, text: "New Widget"}),
         headers: {
             'content-type': 'application/json'
         }

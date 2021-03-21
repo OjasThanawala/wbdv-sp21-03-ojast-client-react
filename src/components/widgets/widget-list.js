@@ -23,7 +23,7 @@ const WidgetList = (
             topicId !== "undefined" && typeof topicId !== "undefined"){
             findWidgetsForTopic(topicId)
         }
-    }, [])
+    }, [topicId])
 
     return(
         <div>
@@ -34,26 +34,10 @@ const WidgetList = (
                     widgets.map(widget =>
                         <li className="list-group-item" key={widget.id}>
                             {
-                                editingWidget.id === widget.id &&
-                                <>
-                                    <i onClick={() => {
-                                        updateWidget({...editingWidget});
-                                        {setEditingWidget({});}
-                                    }} className="fas fa-2x fa-check float-right"></i>
-                                    <i onClick={() => deleteWidget(widget)}
-                                       className="fas fa-2x fa-trash float-right"></i>
-                                </>
-                            }
-                            {
-                                editingWidget.id !== widget.id &&
-                                <i onClick={() => {setEditingWidget(widget)}} className="fas fa-2x fa-cog float-right"></i>
-                            }
-
-                            {
                                 widget.type === "HEADING" &&
                                 <HeadingWidget
                                     // editing={editingWidget.id === widget.id}
-                                    widget  ={widget}
+                                    widget={widget}
                                     updateWidget={updateWidget}
                                     deleteWidget={deleteWidget}/>
                             }
@@ -96,16 +80,16 @@ const dtpm = (dispatch) => ({
     },
 
     deleteWidget: (item) =>
-        widgetService.deleteWidget(item._id)
+        widgetService.deleteWidget(item.id)
             .then(status => dispatch({
                 type: "DELETE_WIDGET",
                 widgetToDelete: item
             })),
     updateWidget: (widget) =>
-        widgetService.updateWidget(widget._id, widget)
+        widgetService.updateWidget(widget.id, widget)
             .then(status => dispatch({
                 type: "UPDATE_WIDGET",
-                widget
+                widget: widget
             })),
 })
 
