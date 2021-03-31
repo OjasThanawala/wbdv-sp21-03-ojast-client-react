@@ -52,17 +52,18 @@ const ImageWidget = (
                         })} value={newItem.url} className="form-control"/>
                     </div>
                     <div className="form-group">
+                        {/*Setting max Image Width and Height to 800 */}
                         Image Width
-                        <input onChange={(event) => event.target.value <= 400 ?
+                        <input onChange={(event) => event.target.value <= 800 ?
                             setNewItem({...newItem, width: event.target.value}):
-                            setNewItem({...newItem, width: 400})
+                            setNewItem({...newItem, width: 800})
                         } value={newItem.width} className="form-control"/>
                     </div>
                     <div className="form-group">
                         Image Height
-                        <input onChange={(event) => event.target.value <= 400 ?
+                        <input onChange={(event) => event.target.value <= 800 ?
                             setNewItem({...newItem, height: event.target.value}):
-                            setNewItem({...newItem, height: 400})
+                            setNewItem({...newItem, height: 800})
                         } value={newItem.height} className="form-control"/>
                     </div>
 

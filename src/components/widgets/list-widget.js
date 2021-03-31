@@ -42,19 +42,24 @@ const ListWidget = (
             }
             {
                 editing && listType &&
+                <>
                 <div>
                     <input onChange={(event) => setNewItem({
                         ...newItem, ordered: event.target.checked
                     }) }
                         checked={newItem.ordered} type="checkbox"/> Ordered
-                    <br/>
-                    Item list
-                    <textarea placeholder="Enter list item" onChange={(event) => setNewItem({
-                        ...newItem, text: event.target.value
-                    }) } value={newItem.text} rows={10} className="form-control"></textarea>
-
                 </div>
 
+                <div>
+                    <label>
+                        List Items
+                    </label>
+                    <textarea placeholder="Enter one list item per line" onChange={(event)=>setNewItem({
+                        ...newItem, text: event.target.value})} value={newItem.text} rows={10} className="form-control">
+                    </textarea>
+
+                </div>
+                </>
             }
 
 
