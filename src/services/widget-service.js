@@ -1,5 +1,7 @@
-const WIDGETS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/widgets";
-const TOPICS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/topics";
+// const WIDGETS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/widgets";
+// const TOPICS_URL = "https://cs5610-sp21-ojast-a1.herokuapp.com/api/topics";
+const TOPICS_URL = "http://localhost:8080/api/topics";
+const WIDGETS_URL = "http://localhost:8080/api/widgets";
 
 export const createWidget = (topicId, widget) =>
     fetch(`${TOPICS_URL}/${topicId}/widgets`, {

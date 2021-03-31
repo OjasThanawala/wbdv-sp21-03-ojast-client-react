@@ -21,6 +21,7 @@ export const updateModule = (moduleId, module) =>
     })
         .then(response => response.json())
 
+
 export const findModulesForCourse = (courseId) =>
     fetch(`${COURSES_URL}/${courseId}/modules`)
         .then(response => response.json())

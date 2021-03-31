@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import HeadingWidget from "./heading-widget";
 import ParagraphWidget from "./paragraph-widget";
+import ImageWidget from "./image-widget";
+import ListWidget from "./list-widget";
 import {useParams} from "react-router-dom";
 import widgetService from '../../services/widget-service'
 import {connect} from "react-redux";
@@ -44,6 +46,22 @@ const WidgetList = (
                             {
                                 widget.type === "PARAGRAPH" &&
                                 <ParagraphWidget
+                                    // editing={editingWidget.id === widget.id}
+                                    widget={widget}
+                                    updateWidget={updateWidget}
+                                    deleteWidget={deleteWidget}/>
+                            }
+                            {
+                                widget.type === "IMAGE" &&
+                                <ImageWidget
+                                    // editing={editingWidget.id === widget.id}
+                                    widget={widget}
+                                    updateWidget={updateWidget}
+                                    deleteWidget={deleteWidget}/>
+                            }
+                            {
+                                widget.type === "LIST" &&
+                                <ListWidget
                                     // editing={editingWidget.id === widget.id}
                                     widget={widget}
                                     updateWidget={updateWidget}
