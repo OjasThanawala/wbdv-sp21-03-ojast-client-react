@@ -20,7 +20,7 @@ const Quiz = () => {
 
 
     return(
-        <div>
+        <div className='container-fluid'>
             <h3>Quiz</h3>
             <ul className='list-group'>
                 {

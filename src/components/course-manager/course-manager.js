@@ -131,10 +131,10 @@ export default class CourseManager
                        render={(props) => <CourseEditor {...props}/>}>
                 </Route>
 
-                <button className="wbdv-add-bottom btn btn-lg btn-danger mx-3 rounded-circle" type="button"
-                        onClick={this.addCourse}>
-                    <i className="fa fa-plus"></i>
-                </button>
+                {/*<button className="wbdv-add-bottom btn btn-lg btn-danger mx-3 rounded-circle" type="button"*/}
+                {/*        onClick={this.addCourse}>*/}
+                {/*    <i className="fa fa-plus"></i>*/}
+                {/*</button>*/}
             </div>
         )
     }

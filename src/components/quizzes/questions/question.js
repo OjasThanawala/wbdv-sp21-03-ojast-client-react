@@ -4,11 +4,17 @@ import MultipleChoiceQuestion from "./multiple-choice-question";
 import './question.style.client.css'
 
 const Question = ({question, quizId}) => {
-    const [answer, setAnswer] = useState([])
+    const [answer, setAnswer] = useState('')
     const [graded, setGraded] = useState(false)
+
+    const toggleAnswer = (ans) => {
+        setGraded(false);
+        setAnswer(ans)
+    }
+
     return(
-        <div>
-            <h5>
+        <div className='container-fluid'>
+            <h4>
                 {question.question}
                 <span>
                     {
@@ -20,13 +26,13 @@ const Question = ({question, quizId}) => {
                         <i className="fas fa-times times-red"></i>
                     }
                 </span>
-            </h5>
+            </h4>
             {
                 question.type === "TRUE_FALSE" &&
                 <TrueFalseQuestion
                     question={question}
                     answer={answer}
-                    setAnswer={setAnswer}
+                    setAnswer={toggleAnswer}
                     graded={graded}
                     setGraded={setGraded}
                 />
@@ -36,28 +42,32 @@ const Question = ({question, quizId}) => {
                 <MultipleChoiceQuestion
                     question={question}
                     answer={answer}
-                    setAnswer={setAnswer}
+                    setAnswer={toggleAnswer}
                     graded={graded}
                     setGraded={setGraded}
                 />
             }
             <br/>
+            <div>
             <span className='float-left'>
                 Your Answer:
             </span>
+
             {
-                graded && <span>
-                    {graded}
+                answer && <span>
+                     {answer}
                 </span>
             }
+            </div>
             <br/>
             <button
                 type="button"
                 className="btn btn-success float-left"
-                onClick={() => setGraded(answer)}>
+                onClick={() => {
+                    setGraded(true);
+                }}>
                 Grade
             </button>
-            <br/>
         </div>
     )
 }

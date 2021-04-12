@@ -15,11 +15,12 @@ const MultipleChoiceQuestion = ({
                     question.choices.map((choice, idx) => {
                         return(
                             <li className={`list-group-item
-                            ${(graded !== null && graded === choice) ? "selected" : ""}
-                            ${(question.correct === choice && graded !== null) ? "correct" : ""}`}
-                            key={idx}>
+                                ${(graded && answer === choice && question.correct === answer) ? "list-group-item-success" : ""}
+                                ${(graded && answer === choice && question.correct !== answer) ? "list-group-item-danger" : ""}
+                                ${(graded && answer !== choice && question.correct !== answer && question.correct === choice) ? "list-group-item-success" : ""}`}
+                                key={idx}>
 
-                            <label><input
+                                <label><input
                                     onClick={() => {
                                         setAnswer(choice)
                                         question.answer = choice
@@ -28,7 +29,7 @@ const MultipleChoiceQuestion = ({
                                     name={question._id}
                                     value={choice}/>
                                     {choice}
-                            </label>
+                                </label>
                             </li>
                         )
                     })
