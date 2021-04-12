@@ -1,6 +1,8 @@
 import './App.css';
 import CourseManager from "./components/course-manager/course-manager";
 import CourseEditor from "./components/course-editor/course-editor";
+import QuizzesList from "./components/quizzes/quizzes-list";
+import Quiz from "./components/quizzes/quiz";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./components/home"
 
@@ -13,6 +15,13 @@ function App() {
                 <Route path="/courses"
                        component={CourseManager}/>
                 {/*<Route path="/editor" exact={true} render={(props) => <CourseEditor {...props}/>}/>*/}
+
+                <Route path="/courses/:courseId/quizzes" exact={true}>
+                    <QuizzesList/>
+                </Route>
+                <Route path="/courses/:courseId/quizzes/:quizId" exact={true}>
+                    <Quiz/>
+                </Route>
             </div>
         </BrowserRouter>
     );
