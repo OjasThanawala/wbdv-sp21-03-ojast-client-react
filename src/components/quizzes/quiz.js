@@ -8,6 +8,8 @@ const Quiz = () => {
     const {quizId, courseId} = useParams();
     const [questions, setQuestions] = useState([]);
     const [quiz, setQuiz] = useState([]);
+    const [submitted, setSubmitted] = useState(false);
+
     useEffect(() => {
         quizService.findQuizById(quizId)
             .then((quiz) => {
@@ -27,12 +29,27 @@ const Quiz = () => {
                     questions.map((question) => {
                         return(
                             <li>
-                                <Question question={question}/>
+                                <Question
+                                    question={question}
+                                    questions={questions}
+                                    setQuestions={setQuestions}/>
                             </li>
                         )
                     })
                 }
             </ul>
+            <br/>
+            <div className='col text-center'>
+                <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => {
+                        setSubmitted(true);
+                        quizService.submitQuiz(quizId, questions)
+                    }}>
+                    Submit Quiz
+                </button>
+            </div>
         </div>
     )
 }

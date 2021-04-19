@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import TrueFalseQuestion from "./true-false-question";
 import MultipleChoiceQuestion from "./multiple-choice-question";
 import './question.style.client.css'
+import quizService from '../../../services/quizzes-service'
 
-const Question = ({question, quizId}) => {
+const Question = ({question,questions, setQuestions, quizId}) => {
     const [answer, setAnswer] = useState('')
     const [graded, setGraded] = useState(false)
 

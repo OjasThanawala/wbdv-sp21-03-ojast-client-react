@@ -5,36 +5,34 @@ import quizzesService from '../../services/quizzes-service';
 const QuizAttempts = () => {
     const {courseId, quizId} = useParams()
     const [quizAttempts, setQuizAttempts] = useState([])
+
     useEffect(() => {
         quizzesService.findAttemptsForQuiz(quizId)
             .then(quizzes => setQuizAttempts(quizzes));
     }, []);
     return(
         <div className='container-fluid'>
-            <h2>Quiz Attempts</h2>
-            <div className='list-group'>
+            <h2>Quiz Attempts- {quizId}</h2>
+            <table className='table'>
+                <thead>
+                <tr>
+                    <th scope='col'>Attempt</th>
+                    <th scope='col'>Score</th>
+                </tr>
+                </thead>
+                <tbody>
                 {
-                    quizAttempts.map((quiz) => {
-                        return(
-                            <div className='container-fluid'>
-                                <div className='list-group-item'>
-                                    <li>
-                                        <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
-                                            {quiz.title}
-                                        </Link>
-                                        <Link
-                                            to={`/courses/${courseId}/quizzes/${quiz._id}`}
-                                            className="float-right btn btn-primary btn-sm">
-                                            Start
-                                        </Link>
-
-                                    </li>
-                                </div>
-                            </div>
-                        )
-                    })
+                    quizAttempts.map((attempt, idx) => {
+                        return (
+                            <tr>
+                            <th scope='row'>{idx+1}</th>
+                            <th scope='row'>{attempt.score}</th>
+                            </tr>
+                    )
+                })
                 }
-            </div>
+                </tbody>
+            </table>
         </div>
     );
 }
