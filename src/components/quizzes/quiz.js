@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import Question from "./questions/question";
 import questionService from '../../services/questions-service'
 import quizService from '../../services/quizzes-service'
@@ -32,7 +32,9 @@ const Quiz = () => {
                                 <Question
                                     question={question}
                                     questions={questions}
-                                    setQuestions={setQuestions}/>
+                                    setQuestions={setQuestions}
+                                    submitted={submitted}
+                                    setSubmitted={setSubmitted}/>
                             </li>
                         )
                     })
@@ -49,6 +51,15 @@ const Quiz = () => {
                     }}>
                     Submit Quiz
                 </button>
+                {
+                submitted &&
+                <Link
+                    to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}
+                    className="btn btn-success btn_name">
+                    See Attempts
+                </Link>
+
+            }
             </div>
         </div>
     )

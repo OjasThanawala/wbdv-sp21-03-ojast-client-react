@@ -8,10 +8,12 @@ const QuizAttempts = () => {
 
     useEffect(() => {
         quizzesService.findAttemptsForQuiz(quizId)
-            .then(quizzes => setQuizAttempts(quizzes));
+            .then(quizzes => setQuizAttempts(quizzes)).then(res => console.log(quizAttempts));
     }, []);
+
     return(
         <div className='container-fluid'>
+
             <h2>Quiz Attempts- {quizId}</h2>
             <table className='table'>
                 <thead>
@@ -21,6 +23,7 @@ const QuizAttempts = () => {
                 </tr>
                 </thead>
                 <tbody>
+
                 {
                     quizAttempts.map((attempt, idx) => {
                         return (

@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'http://localhost:4000/api/quizzes';
+const QUIZZES_URL = 'https://cs5610-sp21-ojas-server-node.herokuapp.com/api/quizzes';
 const findAllQuizzes = () => {
     return fetch(QUIZZES_URL)
         .then(response => response.json())
@@ -9,7 +9,7 @@ const findQuizById = (qid) => {
 }
 
 const submitQuiz = (quizId, questions) => {
-    fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
+    return fetch(`${QUIZZES_URL}/${quizId}/attempts`, {
         method: 'POST',
         body: JSON.stringify(questions),
         headers: {

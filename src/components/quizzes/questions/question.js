@@ -4,13 +4,18 @@ import MultipleChoiceQuestion from "./multiple-choice-question";
 import './question.style.client.css'
 import quizService from '../../../services/quizzes-service'
 
-const Question = ({question,questions, setQuestions, quizId}) => {
+const Question = ({question,questions, setQuestions, quizId, submitted, setSubmitted}) => {
     const [answer, setAnswer] = useState('')
     const [graded, setGraded] = useState(false)
 
     const toggleAnswer = (ans) => {
         setGraded(false);
+        setSubmitted(false);
         setAnswer(ans)
+
+        const idx = questions.findIndex((qId => qId._id === question._id));
+        questions[idx].answer = ans
+        setQuestions([...questions])
     }
 
     return(
@@ -19,11 +24,11 @@ const Question = ({question,questions, setQuestions, quizId}) => {
                 {question.question}
                 <span>
                     {
-                        graded && question.correct === answer &&
+                        submitted && question.correct === answer &&
                         <i className="fas fa-check check-green"></i>
                     }
                     {
-                        graded && question.correct !== answer &&
+                        submitted && question.correct !== answer &&
                         <i className="fas fa-times times-red"></i>
                     }
                 </span>
@@ -36,6 +41,8 @@ const Question = ({question,questions, setQuestions, quizId}) => {
                     setAnswer={toggleAnswer}
                     graded={graded}
                     setGraded={setGraded}
+                    submitted={submitted}
+                    setSubmitted={setSubmitted}
                 />
             }
             {
@@ -46,6 +53,8 @@ const Question = ({question,questions, setQuestions, quizId}) => {
                     setAnswer={toggleAnswer}
                     graded={graded}
                     setGraded={setGraded}
+                    submitted={submitted}
+                    setSubmitted={setSubmitted}
                 />
             }
             <br/>
@@ -61,14 +70,14 @@ const Question = ({question,questions, setQuestions, quizId}) => {
             }
             </div>
             <br/>
-            <button
-                type="button"
-                className="btn btn-success float-left"
-                onClick={() => {
-                    setGraded(true);
-                }}>
-                Grade
-            </button>
+            {/*<button*/}
+            {/*    type="button"*/}
+            {/*    className="btn btn-success float-left"*/}
+            {/*    onClick={() => {*/}
+            {/*        setGraded(true);*/}
+            {/*    }}>*/}
+            {/*    Grade*/}
+            {/*</button>*/}
         </div>
     )
 }

@@ -7,7 +7,9 @@ const MultipleChoiceQuestion = ({
         answer,
         setAnswer,
         graded,
-        setGraded}) => {
+        setGraded,
+        submitted,
+        setSubmitted}) => {
     return(
         <div className='container-fluid'>
             <ul className="list-group">
@@ -15,9 +17,9 @@ const MultipleChoiceQuestion = ({
                     question.choices.map((choice, idx) => {
                         return(
                             <li className={`list-group-item
-                                ${(graded && answer === choice && question.correct === answer) ? "list-group-item-success" : ""}
-                                ${(graded && answer === choice && question.correct !== answer) ? "list-group-item-danger" : ""}
-                                ${(graded && answer !== choice && question.correct !== answer && question.correct === choice) ? "list-group-item-success" : ""}`}
+                                ${(submitted && answer === choice && question.correct === answer) ? "list-group-item-success" : ""}
+                                ${(submitted && answer === choice && question.correct !== answer) ? "list-group-item-danger" : ""}
+                                ${(submitted && answer !== choice && question.correct !== answer && question.correct === choice) ? "list-group-item-success" : ""}`}
                                 key={idx}>
 
                                 <label><input

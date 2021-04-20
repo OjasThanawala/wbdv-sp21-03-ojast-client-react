@@ -6,14 +6,16 @@ const TrueFalseQuestion = ({
        answer,
        setAnswer,
        graded,
-       setGraded}) => {
+       setGraded,
+       submitted,
+       setSubmitted}) => {
     return(
         <div className='container-fluid'>
             <div className='list-group'>
                 <div className={`list-group-item
-                    ${(graded && answer === "true" && question.correct === answer) ? "list-group-item-success" : ""}
-                    ${(graded && answer === "true" && question.correct !== answer) ? "list-group-item-danger" : ""}
-                    ${(graded && answer !== "true" && question.correct !== answer) ? "list-group-item-success" : ""}
+                    ${(submitted && answer === "true" && question.correct === answer) ? "list-group-item-success" : ""}
+                    ${(submitted && answer === "true" && question.correct !== answer) ? "list-group-item-danger" : ""}
+                    ${(submitted && answer !== "true" && question.correct !== answer) ? "list-group-item-success" : ""}
                 `}>
                     <input
                         type="radio"
@@ -27,9 +29,9 @@ const TrueFalseQuestion = ({
                 </div>
 
                 <div className={`list-group-item
-                    ${(graded && answer === "false" && question.correct === answer) ? "list-group-item-success" : ""}
-                    ${(graded && answer === "false" && question.correct !== answer) ? "list-group-item-danger" : ""}
-                    ${(graded && answer !== "false" && question.correct !== answer) ? "list-group-item-success" : ""}
+                    ${(submitted && answer === "false" && question.correct === answer) ? "list-group-item-success" : ""}
+                    ${(submitted && answer === "false" && question.correct !== answer) ? "list-group-item-danger" : ""}
+                    ${(submitted && answer !== "false" && question.correct !== answer) ? "list-group-item-success" : ""}
                 `}>
                     <input
                         type="radio"
